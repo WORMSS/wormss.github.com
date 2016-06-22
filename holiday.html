@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta id="theme_colour" name="theme-color" content="#FF0000l" />
     <title>HOLIDAY</title>
     <style>
         ul#schedule { padding-left: 0px; }
@@ -43,5 +44,47 @@
         <li class="activity">14:32 - Get Nakid &amp; Party</li>
     </ul>
 </div>
+<script>
+    var theme = document.querySelector("#theme_colour");
+    var col_index = 0;
+    var col_phase = 0;
+    var colours = [
+        [255, 0, 0],
+        [255, 255, 0],
+        [0, 255, 0],
+        [0, 255, 255],
+        [0, 0, 255],
+        [255, 0, 255]
+    ];
+    setInterval(function () {
+        var col = getColours();
+        r = getPhase(col_phase, col[0][0], col[1][0]);
+        g = getPhase(col_phase, col[0][1], col[1][1]);
+        b = getPhase(col_phase, col[0][2], col[1][2]);
+        
+        
+        col_phase += 0.01;
+        if ( col_phase > 1 ) {
+            col_phase = 0;
+            col_index++;
+            if ( col_index >= colours.length ) {
+                col_index = 0;
+            }
+        }
+        colour = "rgb("+r+","+g+","+b+")";
+        theme.setAttribute("content", colour);
+    }, 100);
+    function getPhase(phase, col1, col2) {
+        return parseInt(((col2 - col1) * phase) + col1);
+    }
+    function getColours() {
+        return [
+            colours[col_index],
+            col_index + 1 >= colours.length
+                ? colours[0]
+                : colours[col_index + 1]
+        ];
+    }
+</script>
 </body>
 </html>
