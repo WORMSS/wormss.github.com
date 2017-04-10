@@ -57,12 +57,11 @@
         [255, 0, 255]
     ];
     setInterval(function () {
-        var col = getColours();
-        r = getPhase(col_phase, col[0][0], col[1][0]);
-        g = getPhase(col_phase, col[0][1], col[1][1]);
-        b = getPhase(col_phase, col[0][2], col[1][2]);
-        
-        
+        let col0 = colours[col_index],
+            col1 = col_index + 1 >= colours.length ? colours[0] : colours[col_index + 1],
+            r = getPhase(col_phase, col0[0], col1[0]),
+            g = getPhase(col_phase, col0[1], col1[1]),
+            b = getPhase(col_phase, col0[2], col1[2]);
         col_phase += 0.01;
         if ( col_phase > 1 ) {
             col_phase = 0;
@@ -71,20 +70,11 @@
                 col_index = 0;
             }
         }
-        colour = "rgb("+r+","+g+","+b+")";
-        theme.setAttribute("content", colour);
+        theme.setAttribute("content", `rgb(${r},${g},${b})`);
+        function getPhase(col_phase, col0, col1) {
+            return parseInt(((col1 - col0) * col_phase) + col0);
+        }
     }, 100);
-    function getPhase(phase, col1, col2) {
-        return parseInt(((col2 - col1) * phase) + col1);
-    }
-    function getColours() {
-        return [
-            colours[col_index],
-            col_index + 1 >= colours.length
-                ? colours[0]
-                : colours[col_index + 1]
-        ];
-    }
 </script>
 </body>
 </html>
