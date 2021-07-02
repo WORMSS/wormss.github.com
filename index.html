@@ -1,14 +1,62 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset='utf-8'>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>WORMSS</title><link rel="icon" href="favicon.png" />
-        <style type="text/css">
-            body { margin: 40px 0 0 0; font: bold 14px Arial, Helvetica, sans-serif; text-align: center; }
-            img { display: inline-block; margin: 0 auto; }
-            a { color: #000; text-decoration: none;}
-        </style>
-    </head>
-    <body title="WORMSS"><a href="http://github.com/WORMSS"><img src="WORMSS.png"/><br>WORMSS</a></body>
+  <head>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WORMSS</title><link rel="icon" href="favicon.png" />
+    <style type="text/css">
+      body { margin: 40px 0 0 0; font: bold 14px Arial, Helvetica, sans-serif; text-align: center; }
+      img { display: inline-block; margin: 0 auto 5px; }
+      a { color: #000; text-decoration: none;}
+    </style>
+  </head>
+  <body title="WORMSS"><a href="http://github.com/WORMSS">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="-0.1 -0.1 15.2 17.2">
+      <style>
+        path {
+          animation-duration: 2s;
+          animation-fill-mode: both;
+          animation-timing-function: linear;
+        }
+        .line {
+          stroke: black;
+          stroke-width: 0.1;
+        }
+        .fill {
+          animation-name: fill;
+          animation-delay: 3s;
+        }
+        .line.fill {
+          animation-name: line, fill;
+          animation-delay: 0s, 3s;
+        }
+        @keyframes blink {
+          98% {
+            transform: scale(1, 1);
+          }
+          100% {
+            transform: scale(1, 0.1);
+          }     }     @keyframes line {
+          to {
+            stroke-dashoffset: 0;
+          }     }     @keyframes fill {
+          from {
+            fill: transparent;
+          }
+          to {
+            stroke-width: 0;
+          }
+        }
+      </style>
+      <path class="line fill" d="M2,0h6v2h2v7h-2v4h4v2h2v1h-13v-4h2v-1h3v-2h1v1h-6v-9h8v10h-2v3h2v-2h2v2h2v3h-2v-2h-1v2h-8v-8h-2v-7h2Z" fill="#000" fill-rule="evenodd" stroke-dasharray="146" stroke-dashoffset="146" />
+      <path class="fill" d="M2,1h6v1h1v7h-1v2h-1v3h2v-1h2v1h1v1h1v1h-2v-1h-1v1h-8v-4h1v-1h3v-1h1v-1h-1v1h-4v-1h-1v-7h1Z" fill="#ffc6df" />
+      <g transform="translate(1,6)">
+        <g style="animation: blink 5s -2s infinite">
+          <path class="line fill" d="M0-3h2v1h-1v3h1v1h-2ZM3-3h2v5h-2v-1h1v-3h-1Z" fill="#fff" stroke-dasharray="16" stroke-dashoffset="16" />
+          <path class="fill" d="M1-2h1v3h-1ZM3-2h1v3h-1Z" />
+        </g>
+      </g>
+    </svg>
+    <div>WORMSS</div>
+  </body>
 </html>
